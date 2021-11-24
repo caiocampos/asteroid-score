@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsInt, IsDate } from 'class-validator';
+import { IsNotEmpty, IsInt, IsDateString } from 'class-validator';
 import { ValidationMessages } from '../../../common/messages/validation-messages.constants';
 
 export default class ScoreAddRequestDTO {
@@ -10,12 +10,12 @@ export default class ScoreAddRequestDTO {
   score: number;
 
   @IsNotEmpty({ message: ValidationMessages.IS_NOT_EMPTY })
-  @IsDate({ message: ValidationMessages.IS_NOT_DATE })
-  startTime: Date;
+  @IsDateString({ message: ValidationMessages.IS_NOT_DATE })
+  startTime: string;
 
   @IsNotEmpty({ message: ValidationMessages.IS_NOT_EMPTY })
-  @IsDate({ message: ValidationMessages.IS_NOT_DATE })
-  endTime: Date;
+  @IsDateString({ message: ValidationMessages.IS_NOT_DATE })
+  endTime: string;
 
   _n?: number;
 

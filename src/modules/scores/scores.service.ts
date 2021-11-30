@@ -18,7 +18,7 @@ export class ScoresService {
       if (playerName) {
         query = query.where('playerName').regex(new RegExp(playerName, 'i'));
       }
-      const scores = await query.sort('-endTime').exec();
+      const scores = await query.sort('-score').exec();
       return scores.map(ScoreResponseDTO.from);
     } catch (error) {
       throw new HttpException(

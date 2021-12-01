@@ -16,6 +16,9 @@ export class Score {
 
   @Prop({ required: true, type: Date })
   endTime: Date;
+
+  @Prop({ required: true, type: Number })
+  difficulty;
 }
 
 export const ScoreSchema = SchemaFactory.createForClass(Score);

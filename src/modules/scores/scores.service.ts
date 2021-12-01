@@ -49,6 +49,7 @@ export class ScoresService {
       newScore.score = requestDto.score;
       newScore.startTime = new Date(requestDto.startTime);
       newScore.endTime = new Date(requestDto.endTime);
+      newScore.difficulty = requestDto.difficulty;
       const score = await newScore.save();
       return ScoreResponseDTO.from(score);
     } catch (error) {

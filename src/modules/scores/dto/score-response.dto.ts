@@ -6,6 +6,7 @@ export default class ScoreResponseDTO {
     public playerName: string,
     public score: number,
     public creationDate: Date,
+    public difficulty: number,
   ) {}
 
   static from = ({
@@ -13,6 +14,13 @@ export default class ScoreResponseDTO {
     playerName,
     score,
     endTime,
+    difficulty,
   }: ScoreDocument): ScoreResponseDTO =>
-    new ScoreResponseDTO(_id.toHexString(), playerName, score, endTime);
+    new ScoreResponseDTO(
+      _id.toHexString(),
+      playerName,
+      score,
+      endTime,
+      difficulty,
+    );
 }

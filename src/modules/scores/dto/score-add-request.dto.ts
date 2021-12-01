@@ -17,6 +17,10 @@ export default class ScoreAddRequestDTO {
   @IsDateString({ message: ValidationMessages.IS_NOT_DATE })
   endTime: string;
 
+  @IsNotEmpty({ message: ValidationMessages.IS_NOT_EMPTY })
+  @IsInt({ message: ValidationMessages.IS_NOT_NUMBER })
+  difficulty: number;
+
   _n?: number;
 
   @IsNotEmpty({ message: ValidationMessages.IS_NOT_EMPTY })

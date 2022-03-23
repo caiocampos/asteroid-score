@@ -797,10 +797,10 @@
     webpack "5.70.0"
     webpack-node-externals "3.0.0"
 
-"@nestjs/common@^8.4.1":
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-8.4.1.tgz#2a0d166d29beb5bf740dfdddc62c7bd04c39c53f"
-  integrity sha512-g6beLHvJ2cCIdlW8Uui8rQh3+oxLOBLzDIk3yWH4ocp2HEgOJwF0iUv/pk33tFuwbXESIGMK8K165cpZUjNoxA==
+"@nestjs/common@^8.4.2":
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-8.4.2.tgz#39acb463aef1864fe6971422b2d8573857e0ba6f"
+  integrity sha512-l5CTBvW7PaqZPHRwtLU7G0NK2XBLQZL8jnvH0ArGGduljb5MpgsXwgDt8OYlc5m50IGBL/2j70Cad3CEpKcLUA==
   dependencies:
     axios "0.26.1"
     iterare "1.2.1"
@@ -835,10 +835,10 @@
   resolved "https://registry.yarnpkg.com/@nestjs/mongoose/-/mongoose-9.0.3.tgz#0b7d1829051c2f1441142070077fdbd060bdfe5a"
   integrity sha512-y3M4LKVUP28HSp7hO7dXGvhs4PzpVI6LyIDqunlnzDdQhWtqaaxhW7VomqY8esOSv7otpF1v/vcCvoQVtSW4qA==
 
-"@nestjs/platform-express@^8.4.1":
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.4.1.tgz#4720c95eaea642237761018ee33b7569bb5ebb7c"
-  integrity sha512-c18zuhoegJsS1vZueGaNyvU8mLyFtS+6FJ2WAzDOXNpchpq0okrEPdKBifIisWuxgffQYKIufoK73vEfXSfDLg==
+"@nestjs/platform-express@^8.4.2":
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.4.2.tgz#53f4721bda7386ce70f6ba042deff2e78d8ed2bb"
+  integrity sha512-lvwit+wo17fRPNWcVkTdbAlq9qaQSXnf6prHuAHBJ8VjFFLoityDFy3wqgf397L+DXDSctLI7KF6+XWFWSTC1A==
   dependencies:
     body-parser "1.19.2"
     cors "2.8.5"
@@ -3945,10 +3945,10 @@ mongodb@4.3.1:
   optionalDependencies:
     saslprep "^1.0.3"
 
-mongoose@^6.2.7:
-  version "6.2.7"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.2.7.tgz#d8ea2fce4c19200d316c3ac4a8377f3af4fb4450"
-  integrity sha512-yqTZcM3u0+aLzl6cirtXy6vr24kt+kFyTucCQ3pyncvO1jGn/M1R09qkC/v54QoPXeVJdpcuS5eQWn0NLlDvKA==
+mongoose@^6.2.8:
+  version "6.2.8"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.2.8.tgz#96fe81ff51a4c588fe810a0c06d7155d0e75e83d"
+  integrity sha512-Wq6HG0sOJEQHp5YqMlxrnf93vBFwdY2zlAwqI97EPPSt69kiVV21pTv4cDanrCNWi4upG8ajQ/p9jpDjcECjkQ==
   dependencies:
     bson "^4.2.2"
     kareem "2.3.4"

@@ -181,24 +181,24 @@ __decorate([
     __param(0, (0, common_1.Query)('playerName')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", typeof (_a = typeof Promise !== "undefined" && Promise) === "function" ? _a : Object)
+    __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
 ], ScoresController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('count'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
+    __metadata("design:returntype", typeof (_c = typeof Promise !== "undefined" && Promise) === "function" ? _c : Object)
 ], ScoresController.prototype, "count", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_c = typeof score_add_request_dto_1.default !== "undefined" && score_add_request_dto_1.default) === "function" ? _c : Object]),
-    __metadata("design:returntype", typeof (_d = typeof Promise !== "undefined" && Promise) === "function" ? _d : Object)
+    __metadata("design:paramtypes", [typeof (_d = typeof score_add_request_dto_1.default !== "undefined" && score_add_request_dto_1.default) === "function" ? _d : Object]),
+    __metadata("design:returntype", typeof (_e = typeof Promise !== "undefined" && Promise) === "function" ? _e : Object)
 ], ScoresController.prototype, "add", null);
 ScoresController = __decorate([
     (0, common_1.Controller)('score'),
-    __metadata("design:paramtypes", [typeof (_e = typeof scores_service_1.ScoresService !== "undefined" && scores_service_1.ScoresService) === "function" ? _e : Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof scores_service_1.ScoresService !== "undefined" && scores_service_1.ScoresService) === "function" ? _a : Object])
 ], ScoresController);
 exports.ScoresController = ScoresController;
 
@@ -220,7 +220,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var ScoresService_1, _a;
+var ScoresService_1;
+var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoresService = void 0;
 const common_1 = __webpack_require__(1);

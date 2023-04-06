@@ -297,8 +297,8 @@ class ScoreResponseDTO {
         this.difficulty = difficulty;
     }
 }
-exports["default"] = ScoreResponseDTO;
 ScoreResponseDTO.from = ({ _id, playerName, score, endTime, difficulty, }) => new ScoreResponseDTO(_id.toHexString(), playerName, score, endTime, difficulty);
+exports["default"] = ScoreResponseDTO;
 
 
 /***/ }),

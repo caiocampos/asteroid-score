@@ -30,9 +30,9 @@ const common_1 = __webpack_require__(1);
 const config_1 = __webpack_require__(4);
 const mongoose_1 = __webpack_require__(5);
 const scores_module_1 = __webpack_require__(6);
-let AppModule = class AppModule {
+let AppModule = exports.AppModule = class AppModule {
 };
-AppModule = __decorate([
+exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot(),
@@ -44,7 +44,6 @@ AppModule = __decorate([
         ],
     })
 ], AppModule);
-exports.AppModule = AppModule;
 
 
 /***/ }),
@@ -77,9 +76,9 @@ const mongoose_1 = __webpack_require__(5);
 const score_entity_1 = __webpack_require__(7);
 const scores_controller_1 = __webpack_require__(8);
 const scores_service_1 = __webpack_require__(9);
-let ScoresModule = class ScoresModule {
+let ScoresModule = exports.ScoresModule = class ScoresModule {
 };
-ScoresModule = __decorate([
+exports.ScoresModule = ScoresModule = __decorate([
     (0, common_1.Module)({
         imports: [
             mongoose_1.MongooseModule.forFeature([{ name: 'Score', schema: score_entity_1.ScoreSchema }]),
@@ -89,7 +88,6 @@ ScoresModule = __decorate([
         exports: [],
     })
 ], ScoresModule);
-exports.ScoresModule = ScoresModule;
 
 
 /***/ }),
@@ -110,7 +108,7 @@ var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoreSchema = exports.Score = void 0;
 const mongoose_1 = __webpack_require__(5);
-let Score = class Score {
+let Score = exports.Score = class Score {
 };
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: String }),
@@ -132,10 +130,9 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Number }),
     __metadata("design:type", Object)
 ], Score.prototype, "difficulty", void 0);
-Score = __decorate([
+exports.Score = Score = __decorate([
     (0, mongoose_1.Schema)({ collection: 'scores' })
 ], Score);
-exports.Score = Score;
 exports.ScoreSchema = mongoose_1.SchemaFactory.createForClass(Score);
 
 
@@ -162,7 +159,7 @@ exports.ScoresController = void 0;
 const common_1 = __webpack_require__(1);
 const scores_service_1 = __webpack_require__(9);
 const score_add_request_dto_1 = __webpack_require__(14);
-let ScoresController = class ScoresController {
+let ScoresController = exports.ScoresController = class ScoresController {
     constructor(scoresService) {
         this.scoresService = scoresService;
     }
@@ -196,11 +193,10 @@ __decorate([
     __metadata("design:paramtypes", [typeof (_d = typeof score_add_request_dto_1.default !== "undefined" && score_add_request_dto_1.default) === "function" ? _d : Object]),
     __metadata("design:returntype", typeof (_e = typeof Promise !== "undefined" && Promise) === "function" ? _e : Object)
 ], ScoresController.prototype, "add", null);
-ScoresController = __decorate([
+exports.ScoresController = ScoresController = __decorate([
     (0, common_1.Controller)('score'),
     __metadata("design:paramtypes", [typeof (_a = typeof scores_service_1.ScoresService !== "undefined" && scores_service_1.ScoresService) === "function" ? _a : Object])
 ], ScoresController);
-exports.ScoresController = ScoresController;
 
 
 /***/ }),
@@ -229,7 +225,7 @@ const score_response_dto_1 = __webpack_require__(10);
 const mongoose_1 = __webpack_require__(5);
 const mongoose_2 = __webpack_require__(11);
 const utils_1 = __webpack_require__(12);
-let ScoresService = ScoresService_1 = class ScoresService {
+let ScoresService = exports.ScoresService = ScoresService_1 = class ScoresService {
     constructor(scoreModel) {
         this.scoreModel = scoreModel;
         this.logger = new common_1.Logger(ScoresService_1.name);
@@ -274,12 +270,11 @@ let ScoresService = ScoresService_1 = class ScoresService {
         }
     }
 };
-ScoresService = ScoresService_1 = __decorate([
+exports.ScoresService = ScoresService = ScoresService_1 = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('Score')),
     __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object])
 ], ScoresService);
-exports.ScoresService = ScoresService;
 
 
 /***/ }),
@@ -375,6 +370,7 @@ const class_validator_1 = __webpack_require__(15);
 const validation_messages_constants_1 = __webpack_require__(16);
 class ScoreAddRequestDTO {
 }
+exports["default"] = ScoreAddRequestDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     __metadata("design:type", String)
@@ -403,7 +399,6 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     __metadata("design:type", String)
 ], ScoreAddRequestDTO.prototype, "_h", void 0);
-exports["default"] = ScoreAddRequestDTO;
 
 
 /***/ }),

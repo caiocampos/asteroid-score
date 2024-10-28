@@ -30,8 +30,9 @@ const common_1 = __webpack_require__(1);
 const config_1 = __webpack_require__(4);
 const mongoose_1 = __webpack_require__(5);
 const scores_module_1 = __webpack_require__(6);
-let AppModule = exports.AppModule = class AppModule {
+let AppModule = class AppModule {
 };
+exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
@@ -76,8 +77,9 @@ const mongoose_1 = __webpack_require__(5);
 const score_entity_1 = __webpack_require__(7);
 const scores_controller_1 = __webpack_require__(8);
 const scores_service_1 = __webpack_require__(9);
-let ScoresModule = exports.ScoresModule = class ScoresModule {
+let ScoresModule = class ScoresModule {
 };
+exports.ScoresModule = ScoresModule;
 exports.ScoresModule = ScoresModule = __decorate([
     (0, common_1.Module)({
         imports: [
@@ -108,8 +110,9 @@ var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoreSchema = exports.Score = void 0;
 const mongoose_1 = __webpack_require__(5);
-let Score = exports.Score = class Score {
+let Score = class Score {
 };
+exports.Score = Score;
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: String }),
     __metadata("design:type", String)
@@ -159,7 +162,7 @@ exports.ScoresController = void 0;
 const common_1 = __webpack_require__(1);
 const scores_service_1 = __webpack_require__(9);
 const score_add_request_dto_1 = __webpack_require__(14);
-let ScoresController = exports.ScoresController = class ScoresController {
+let ScoresController = class ScoresController {
     constructor(scoresService) {
         this.scoresService = scoresService;
     }
@@ -173,6 +176,7 @@ let ScoresController = exports.ScoresController = class ScoresController {
         return this.scoresService.add(requestDto);
     }
 };
+exports.ScoresController = ScoresController;
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Query)('playerName')),
@@ -225,7 +229,7 @@ const score_response_dto_1 = __webpack_require__(10);
 const mongoose_1 = __webpack_require__(5);
 const mongoose_2 = __webpack_require__(11);
 const utils_1 = __webpack_require__(12);
-let ScoresService = exports.ScoresService = ScoresService_1 = class ScoresService {
+let ScoresService = ScoresService_1 = class ScoresService {
     constructor(scoreModel) {
         this.scoreModel = scoreModel;
         this.logger = new common_1.Logger(ScoresService_1.name);
@@ -270,6 +274,7 @@ let ScoresService = exports.ScoresService = ScoresService_1 = class ScoresServic
         }
     }
 };
+exports.ScoresService = ScoresService;
 exports.ScoresService = ScoresService = ScoresService_1 = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('Score')),
@@ -450,7 +455,7 @@ exports.ValidationMessages = Object.freeze({
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it uses a non-standard name for the exports (exports).
 (() => {
 var exports = __webpack_exports__;
 

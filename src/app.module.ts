@@ -6,10 +6,7 @@ import { ScoresModule } from './modules/scores/scores.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     ScoresModule,
   ],
 })

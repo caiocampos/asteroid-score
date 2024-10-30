@@ -1,8 +1,6 @@
 # asteroid-score
 
-[![Node.js CI](https://github.com/caiocampos/asteroid-score/actions/workflows/node.js.yml/badge.svg)](https://github.com/caiocampos/asteroid-score/actions/workflows/node.js.yml)
-[![DepShield Badge](https://depshield.sonatype.org/badges/caiocampos/asteroid-score/depshield.svg)](https://depshield.github.io)
-[![GuardRails Badge](https://badges.guardrails.io/caiocampos/asteroid-score.svg)](https://www.guardrails.io/)
+[![Deploy](https://github.com/caiocampos/asteroid-score/actions/workflows/deploy.yml/badge.svg)](https://github.com/caiocampos/asteroid-score/actions/workflows/deploy.yml)
 [![License](https://img.shields.io/github/license/caiocampos/asteroid-score.svg)](LICENSE)
 
 Backend usando NestJS, Mongoose e MongoDB, para jogo Asteroids https://github.com/cao-ancap/asteroids

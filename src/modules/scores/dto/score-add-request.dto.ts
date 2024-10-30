@@ -10,11 +10,11 @@ export default class ScoreAddRequestDTO {
   score: number;
 
   @IsNotEmpty({ message: ValidationMessages.IS_NOT_EMPTY })
-  @IsDateString({ message: ValidationMessages.IS_NOT_DATE })
+  @IsDateString({}, { message: ValidationMessages.IS_NOT_DATE })
   startTime: string;
 
   @IsNotEmpty({ message: ValidationMessages.IS_NOT_EMPTY })
-  @IsDateString({ message: ValidationMessages.IS_NOT_DATE })
+  @IsDateString({}, { message: ValidationMessages.IS_NOT_DATE })
   endTime: string;
 
   @IsNotEmpty({ message: ValidationMessages.IS_NOT_EMPTY })

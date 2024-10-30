@@ -30,7 +30,7 @@ export class ScoresService {
 
   async count(): Promise<number> {
     try {
-      return await this.scoreModel.count().exec();
+      return await this.scoreModel.countDocuments().exec();
     } catch (error) {
       throw new HttpException(
         'Erro ao contar as pontuações',

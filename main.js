@@ -37,10 +37,7 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot(),
-            mongoose_1.MongooseModule.forRoot(process.env.MONGO_URI, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            }),
+            mongoose_1.MongooseModule.forRoot(process.env.MONGO_URI),
             scores_module_1.ScoresModule,
         ],
     })
@@ -249,7 +246,7 @@ let ScoresService = ScoresService_1 = class ScoresService {
     }
     async count() {
         try {
-            return await this.scoreModel.count().exec();
+            return await this.scoreModel.countDocuments().exec();
         }
         catch (error) {
             throw new common_1.HttpException('Erro ao contar as pontuações', common_1.HttpStatus.BAD_REQUEST);
@@ -387,12 +384,12 @@ __decorate([
 ], ScoreAddRequestDTO.prototype, "score", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
-    (0, class_validator_1.IsDateString)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_DATE }),
+    (0, class_validator_1.IsDateString)({}, { message: validation_messages_constants_1.ValidationMessages.IS_NOT_DATE }),
     __metadata("design:type", String)
 ], ScoreAddRequestDTO.prototype, "startTime", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
-    (0, class_validator_1.IsDateString)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_DATE }),
+    (0, class_validator_1.IsDateString)({}, { message: validation_messages_constants_1.ValidationMessages.IS_NOT_DATE }),
     __metadata("design:type", String)
 ], ScoreAddRequestDTO.prototype, "endTime", void 0);
 __decorate([

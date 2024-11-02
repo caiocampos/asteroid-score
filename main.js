@@ -55,7 +55,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.moduleList = void 0;
 const mongoose_1 = __webpack_require__(6);
 const scores_module_1 = __webpack_require__(7);
-const mongoose_connection_1 = __webpack_require__(18);
+const mongoose_connection_1 = __webpack_require__(15);
 exports.moduleList = [
     mongoose_1.MongooseModule.forRoot((_a = process.env.MONGO_URI_SCORE) !== null && _a !== void 0 ? _a : process.env.MONGO_URI, {
         connectionName: mongoose_connection_1.connectionName,
@@ -88,7 +88,7 @@ const mongoose_1 = __webpack_require__(6);
 const score_entity_1 = __webpack_require__(8);
 const scores_controller_1 = __webpack_require__(9);
 const scores_service_1 = __webpack_require__(10);
-const mongoose_connection_1 = __webpack_require__(18);
+const mongoose_connection_1 = __webpack_require__(15);
 let ScoresModule = class ScoresModule {
 };
 exports.ScoresModule = ScoresModule;
@@ -173,7 +173,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoresController = void 0;
 const common_1 = __webpack_require__(1);
 const scores_service_1 = __webpack_require__(10);
-const score_add_request_dto_1 = __webpack_require__(15);
+const score_add_request_dto_1 = __webpack_require__(16);
 let ScoresController = class ScoresController {
     constructor(scoresService) {
         this.scoresService = scoresService;
@@ -239,8 +239,10 @@ exports.ScoresService = void 0;
 const common_1 = __webpack_require__(1);
 const mongoose_1 = __webpack_require__(6);
 const mongoose_2 = __webpack_require__(11);
+const score_entity_1 = __webpack_require__(8);
 const score_response_dto_1 = __webpack_require__(12);
 const utils_1 = __webpack_require__(13);
+const mongoose_connection_1 = __webpack_require__(15);
 let ScoresService = ScoresService_1 = class ScoresService {
     constructor(scoreModel) {
         this.scoreModel = scoreModel;
@@ -289,7 +291,7 @@ let ScoresService = ScoresService_1 = class ScoresService {
 exports.ScoresService = ScoresService;
 exports.ScoresService = ScoresService = ScoresService_1 = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)('Score')),
+    __param(0, (0, mongoose_1.InjectModel)(score_entity_1.ScoreDocument.name, mongoose_connection_1.connectionName)),
     __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object])
 ], ScoresService);
 
@@ -370,6 +372,16 @@ module.exports = require("crypto");
 
 /***/ }),
 /* 15 */
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.connectionName = void 0;
+exports.connectionName = 'asteroid-score';
+
+
+/***/ }),
+/* 16 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -383,8 +395,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const class_validator_1 = __webpack_require__(16);
-const validation_messages_constants_1 = __webpack_require__(17);
+const class_validator_1 = __webpack_require__(17);
+const validation_messages_constants_1 = __webpack_require__(18);
 class ScoreAddRequestDTO {
 }
 exports["default"] = ScoreAddRequestDTO;
@@ -419,13 +431,13 @@ __decorate([
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ ((module) => {
 
 module.exports = require("class-validator");
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -436,16 +448,6 @@ exports.ValidationMessages = Object.freeze({
     IS_NOT_DATE: 'Campo $property não é uma data válida.',
     IS_NOT_NUMBER: 'Campo $property não é um número válido.',
 });
-
-
-/***/ }),
-/* 18 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.connectionName = void 0;
-exports.connectionName = 'asteroid-score';
 
 
 /***/ })

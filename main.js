@@ -95,7 +95,7 @@ exports.ScoresModule = ScoresModule;
 exports.ScoresModule = ScoresModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: 'Score', schema: score_entity_1.ScoreSchema }], mongoose_connection_1.connectionName),
+            mongoose_1.MongooseModule.forFeature([{ name: score_entity_1.Score.name, schema: score_entity_1.ScoreSchema }], mongoose_connection_1.connectionName),
         ],
         providers: [scores_service_1.ScoresService],
         controllers: [scores_controller_1.ScoresController],

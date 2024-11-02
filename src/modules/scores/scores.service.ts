@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { ScoreDocument } from './score.entity';
-import ScoreResponseDTO from './dto/score-response.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { ScoreDocument } from './score.entity';
+import ScoreResponseDTO from './dto/score-response.dto';
 import ScoreAddRequestDTO from './dto/score-add-request.dto';
-import { testHash } from 'src/common/utils';
+import { testHash } from '../../common/utils';
 
 @Injectable()
 export class ScoresService {

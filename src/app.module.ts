@@ -1,13 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ScoresModule } from './modules/scores/scores.module';
+import { moduleList } from './modules-expose';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_URI),
-    ScoresModule,
-  ],
+  imports: [ConfigModule.forRoot(), ...moduleList],
 })
 export class AppModule {}

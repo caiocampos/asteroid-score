@@ -5,12 +5,13 @@ import { ScoreDocument } from './score.entity';
 import ScoreResponseDTO from './dto/score-response.dto';
 import ScoreAddRequestDTO from './dto/score-add-request.dto';
 import { testHash } from '../../common/utils';
+import { connectionName } from '../../mongoose-connection';
 
 @Injectable()
 export class ScoresService {
   private readonly logger = new Logger(ScoresService.name);
 
-  constructor(@InjectModel('Score') private scoreModel: Model<ScoreDocument>) {}
+  constructor(@InjectModel(ScoreDocument.name, connectionName) private scoreModel: Model<ScoreDocument>) {}
 
   async findAll(playerName): Promise<Array<ScoreResponseDTO>> {
     try {

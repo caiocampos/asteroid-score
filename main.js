@@ -28,18 +28,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AppModule = void 0;
 const common_1 = __webpack_require__(1);
 const config_1 = __webpack_require__(4);
-const mongoose_1 = __webpack_require__(5);
-const scores_module_1 = __webpack_require__(6);
+const modules_expose_1 = __webpack_require__(5);
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            config_1.ConfigModule.forRoot(),
-            mongoose_1.MongooseModule.forRoot(process.env.MONGO_URI),
-            scores_module_1.ScoresModule,
-        ],
+        imports: [config_1.ConfigModule.forRoot(), ...modules_expose_1.moduleList],
     })
 ], AppModule);
 
@@ -52,12 +47,31 @@ module.exports = require("@nestjs/config");
 
 /***/ }),
 /* 5 */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.moduleList = void 0;
+const mongoose_1 = __webpack_require__(6);
+const scores_module_1 = __webpack_require__(7);
+const mongoose_connection_1 = __webpack_require__(18);
+exports.moduleList = [
+    mongoose_1.MongooseModule.forRoot((_a = process.env.MONGO_URI_SCORE) !== null && _a !== void 0 ? _a : process.env.MONGO_URI, {
+        connectionName: mongoose_connection_1.connectionName,
+    }),
+    scores_module_1.ScoresModule,
+];
+
+
+/***/ }),
+/* 6 */
 /***/ ((module) => {
 
 module.exports = require("@nestjs/mongoose");
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -70,17 +84,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoresModule = void 0;
 const common_1 = __webpack_require__(1);
-const mongoose_1 = __webpack_require__(5);
-const score_entity_1 = __webpack_require__(7);
-const scores_controller_1 = __webpack_require__(8);
-const scores_service_1 = __webpack_require__(9);
+const mongoose_1 = __webpack_require__(6);
+const score_entity_1 = __webpack_require__(8);
+const scores_controller_1 = __webpack_require__(9);
+const scores_service_1 = __webpack_require__(10);
+const mongoose_connection_1 = __webpack_require__(18);
 let ScoresModule = class ScoresModule {
 };
 exports.ScoresModule = ScoresModule;
 exports.ScoresModule = ScoresModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: 'Score', schema: score_entity_1.ScoreSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'Score', schema: score_entity_1.ScoreSchema }], mongoose_connection_1.connectionName),
         ],
         providers: [scores_service_1.ScoresService],
         controllers: [scores_controller_1.ScoresController],
@@ -90,7 +105,7 @@ exports.ScoresModule = ScoresModule = __decorate([
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -106,7 +121,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoreSchema = exports.Score = void 0;
-const mongoose_1 = __webpack_require__(5);
+const mongoose_1 = __webpack_require__(6);
 let Score = class Score {
 };
 exports.Score = Score;
@@ -137,7 +152,7 @@ exports.ScoreSchema = mongoose_1.SchemaFactory.createForClass(Score);
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -157,8 +172,8 @@ var _a, _b, _c, _d, _e;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoresController = void 0;
 const common_1 = __webpack_require__(1);
-const scores_service_1 = __webpack_require__(9);
-const score_add_request_dto_1 = __webpack_require__(14);
+const scores_service_1 = __webpack_require__(10);
+const score_add_request_dto_1 = __webpack_require__(15);
 let ScoresController = class ScoresController {
     constructor(scoresService) {
         this.scoresService = scoresService;
@@ -201,7 +216,7 @@ exports.ScoresController = ScoresController = __decorate([
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -222,10 +237,10 @@ var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoresService = void 0;
 const common_1 = __webpack_require__(1);
-const score_response_dto_1 = __webpack_require__(10);
-const mongoose_1 = __webpack_require__(5);
+const mongoose_1 = __webpack_require__(6);
 const mongoose_2 = __webpack_require__(11);
-const utils_1 = __webpack_require__(12);
+const score_response_dto_1 = __webpack_require__(12);
+const utils_1 = __webpack_require__(13);
 let ScoresService = ScoresService_1 = class ScoresService {
     constructor(scoreModel) {
         this.scoreModel = scoreModel;
@@ -280,7 +295,13 @@ exports.ScoresService = ScoresService = ScoresService_1 = __decorate([
 
 
 /***/ }),
-/* 10 */
+/* 11 */
+/***/ ((module) => {
+
+module.exports = require("mongoose");
+
+/***/ }),
+/* 12 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -299,13 +320,7 @@ exports["default"] = ScoreResponseDTO;
 
 
 /***/ }),
-/* 11 */
-/***/ ((module) => {
-
-module.exports = require("mongoose");
-
-/***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -322,7 +337,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.forceNumber = exports.testHash = void 0;
-const crypto_1 = __webpack_require__(13);
+const crypto_1 = __webpack_require__(14);
 const saltHash = (object, num, text) => {
     const _a = Object.assign({}, object), { _n, _h } = _a, origin = __rest(_a, ["_n", "_h"]);
     const o = origin;
@@ -348,13 +363,13 @@ exports.forceNumber = forceNumber;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ ((module) => {
 
 module.exports = require("crypto");
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -368,8 +383,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const class_validator_1 = __webpack_require__(15);
-const validation_messages_constants_1 = __webpack_require__(16);
+const class_validator_1 = __webpack_require__(16);
+const validation_messages_constants_1 = __webpack_require__(17);
 class ScoreAddRequestDTO {
 }
 exports["default"] = ScoreAddRequestDTO;
@@ -404,13 +419,13 @@ __decorate([
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ ((module) => {
 
 module.exports = require("class-validator");
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -421,6 +436,16 @@ exports.ValidationMessages = Object.freeze({
     IS_NOT_DATE: 'Campo $property não é uma data válida.',
     IS_NOT_NUMBER: 'Campo $property não é um número válido.',
 });
+
+
+/***/ }),
+/* 18 */
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.connectionName = void 0;
+exports.connectionName = 'asteroid-score';
 
 
 /***/ })

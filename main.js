@@ -291,7 +291,7 @@ let ScoresService = ScoresService_1 = class ScoresService {
 exports.ScoresService = ScoresService;
 exports.ScoresService = ScoresService = ScoresService_1 = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(score_entity_1.ScoreDocument.name, mongoose_connection_1.connectionName)),
+    __param(0, (0, mongoose_1.InjectModel)(score_entity_1.Score.name, mongoose_connection_1.connectionName)),
     __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object])
 ], ScoresService);
 

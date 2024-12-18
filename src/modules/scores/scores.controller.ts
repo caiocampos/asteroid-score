@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, Query } from '@nestjs/common';
+import { Controller, Post, Get, Body, Query, HttpCode } from '@nestjs/common';
 import { ScoresService } from './scores.service';
 import ScoreResponseDTO from './dto/score-response.dto';
 import ScoreAddRequestDTO from './dto/score-add-request.dto';
@@ -20,6 +20,7 @@ export class ScoresController {
   }
 
   @Post()
+  @HttpCode(201)
   add(@Body() requestDto: ScoreAddRequestDTO): Promise<ScoreResponseDTO> {
     return this.scoresService.add(requestDto);
   }

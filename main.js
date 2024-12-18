@@ -204,6 +204,7 @@ __decorate([
 ], ScoresController.prototype, "count", null);
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.HttpCode)(201),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [typeof (_d = typeof score_add_request_dto_1.default !== "undefined" && score_add_request_dto_1.default) === "function" ? _d : Object]),

@@ -56,8 +56,9 @@ exports.moduleList = void 0;
 const mongoose_1 = __webpack_require__(6);
 const scores_module_1 = __webpack_require__(7);
 const mongoose_connection_1 = __webpack_require__(15);
+const utils_1 = __webpack_require__(13);
 exports.moduleList = [
-    mongoose_1.MongooseModule.forRoot((_a = process.env.MONGO_URI_SCORE) !== null && _a !== void 0 ? _a : process.env.MONGO_URI, {
+    mongoose_1.MongooseModule.forRoot((0, utils_1.forceString)((_a = process.env.MONGO_URI_SCORE) !== null && _a !== void 0 ? _a : process.env.MONGO_URI), {
         connectionName: mongoose_connection_1.connectionName,
     }),
     scores_module_1.ScoresModule,
@@ -118,11 +119,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a, _b;
+var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoreSchema = exports.Score = void 0;
 const mongoose_1 = __webpack_require__(6);
 let Score = class Score {
+    constructor(playerName, score, startTime, endTime, difficulty) {
+        this.playerName = playerName;
+        this.score = score;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.difficulty = difficulty;
+    }
 };
 exports.Score = Score;
 __decorate([
@@ -135,18 +143,19 @@ __decorate([
 ], Score.prototype, "score", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Date }),
-    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+    __metadata("design:type", typeof (_c = typeof Date !== "undefined" && Date) === "function" ? _c : Object)
 ], Score.prototype, "startTime", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Date }),
-    __metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
+    __metadata("design:type", typeof (_d = typeof Date !== "undefined" && Date) === "function" ? _d : Object)
 ], Score.prototype, "endTime", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Number }),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], Score.prototype, "difficulty", void 0);
 exports.Score = Score = __decorate([
-    (0, mongoose_1.Schema)({ collection: 'scores' })
+    (0, mongoose_1.Schema)({ collection: 'scores' }),
+    __metadata("design:paramtypes", [String, Number, typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object, typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object, Number])
 ], Score);
 exports.ScoreSchema = mongoose_1.SchemaFactory.createForClass(Score);
 
@@ -168,12 +177,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var _a, _b, _c, _d, _e;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoresController = void 0;
 const common_1 = __webpack_require__(1);
 const scores_service_1 = __webpack_require__(10);
-const score_add_request_dto_1 = __webpack_require__(16);
+const score_add_request_dto_1 = __importDefault(__webpack_require__(16));
 let ScoresController = class ScoresController {
     constructor(scoresService) {
         this.scoresService = scoresService;
@@ -233,6 +245,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var ScoresService_1;
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
@@ -241,7 +256,7 @@ const common_1 = __webpack_require__(1);
 const mongoose_1 = __webpack_require__(6);
 const mongoose_2 = __webpack_require__(11);
 const score_entity_1 = __webpack_require__(8);
-const score_response_dto_1 = __webpack_require__(12);
+const score_response_dto_1 = __importDefault(__webpack_require__(12));
 const utils_1 = __webpack_require__(13);
 const mongoose_connection_1 = __webpack_require__(15);
 let ScoresService = ScoresService_1 = class ScoresService {
@@ -339,7 +354,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.forceNumber = exports.testHash = void 0;
+exports.forceString = exports.forceNumber = exports.testHash = void 0;
 const crypto_1 = __webpack_require__(14);
 const saltHash = (object, num, text) => {
     const _a = Object.assign({}, object), { _n, _h } = _a, origin = __rest(_a, ["_n", "_h"]);
@@ -359,10 +374,12 @@ const calcSalt = (n) => {
     return (x + aci).toString();
 };
 const testHash = (object) => object._h ===
-    saltHash(object, (0, exports.forceNumber)(process.env.S_NUM), process.env.S_TEXT);
+    saltHash(object, (0, exports.forceNumber)(process.env.S_NUM), (0, exports.forceString)(process.env.S_TEXT));
 exports.testHash = testHash;
 const forceNumber = (num) => Number(num) || 0;
 exports.forceNumber = forceNumber;
+const forceString = (str) => String(str) || '';
+exports.forceString = forceString;
 
 
 /***/ }),
@@ -399,6 +416,15 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const class_validator_1 = __webpack_require__(17);
 const validation_messages_constants_1 = __webpack_require__(18);
 class ScoreAddRequestDTO {
+    constructor(playerName, score, startTime, endTime, difficulty, _h, _n) {
+        this.playerName = playerName;
+        this.score = score;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.difficulty = difficulty;
+        this._h = _h;
+        this._n = _n;
+    }
 }
 exports["default"] = ScoreAddRequestDTO;
 __decorate([

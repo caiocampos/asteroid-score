@@ -13,7 +13,7 @@ export class ScoresService {
 
   constructor(@InjectModel(Score.name, connectionName) private scoreModel: Model<ScoreDocument>) {}
 
-  async findAll(playerName): Promise<Array<ScoreResponseDTO>> {
+  async findAll(playerName: string): Promise<Array<ScoreResponseDTO>> {
     try {
       let query = this.scoreModel.find();
       if (playerName) {

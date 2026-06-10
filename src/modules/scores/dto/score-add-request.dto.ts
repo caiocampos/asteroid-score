@@ -25,4 +25,22 @@ export default class ScoreAddRequestDTO {
 
   @IsNotEmpty({ message: ValidationMessages.IS_NOT_EMPTY })
   _h: string;
+
+  public constructor(
+    playerName: string,
+    score: number,
+    startTime: string,
+    endTime: string,
+    difficulty: number,
+    _h: string,
+    _n?: number,
+  ) {
+    this.playerName = playerName;
+    this.score = score;
+    this.startTime = startTime;
+    this.endTime = endTime;
+    this.difficulty = difficulty;
+    this._h = _h;
+    this._n = _n;
+  }
 }

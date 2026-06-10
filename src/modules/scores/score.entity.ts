@@ -18,7 +18,21 @@ export class Score {
   endTime: Date;
 
   @Prop({ required: true, type: Number })
-  difficulty;
+  difficulty: number;
+
+  public constructor(
+    playerName: string,
+    score: number,
+    startTime: Date,
+    endTime: Date,
+    difficulty: number,
+  ) {
+    this.playerName = playerName;
+    this.score = score;
+    this.startTime = startTime;
+    this.endTime = endTime;
+    this.difficulty = difficulty;
+  }
 }
 
 export const ScoreSchema = SchemaFactory.createForClass(Score);

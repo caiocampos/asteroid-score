@@ -32,6 +32,12 @@ const calcSalt = (n: number): string => {
 
 export const testHash = (object: InputObject): boolean =>
   object._h ===
-  saltHash(object, forceNumber(process.env.S_NUM), process.env.S_TEXT);
+  saltHash(
+    object,
+    forceNumber(process.env.S_NUM),
+    forceString(process.env.S_TEXT),
+  );
 
-export const forceNumber = (num: any): number => Number(num) || 0;
+export const forceNumber = (num: unknown): number => Number(num) || 0;
+
+export const forceString = (str: unknown): string => String(str) || '';

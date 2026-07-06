@@ -177,15 +177,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var _a, _b, _c, _d, _e;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ScoresController = void 0;
 const common_1 = __webpack_require__(1);
 const scores_service_1 = __webpack_require__(10);
-const score_add_request_dto_1 = __importDefault(__webpack_require__(16));
+const score_add_request_dto_1 = __webpack_require__(16);
 let ScoresController = class ScoresController {
     constructor(scoresService) {
         this.scoresService = scoresService;
@@ -219,7 +216,7 @@ __decorate([
     (0, common_1.HttpCode)(201),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_d = typeof score_add_request_dto_1.default !== "undefined" && score_add_request_dto_1.default) === "function" ? _d : Object]),
+    __metadata("design:paramtypes", [typeof (_d = typeof score_add_request_dto_1.ScoreAddRequestDTO !== "undefined" && score_add_request_dto_1.ScoreAddRequestDTO) === "function" ? _d : Object]),
     __metadata("design:returntype", typeof (_e = typeof Promise !== "undefined" && Promise) === "function" ? _e : Object)
 ], ScoresController.prototype, "add", null);
 exports.ScoresController = ScoresController = __decorate([

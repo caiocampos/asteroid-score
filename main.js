@@ -245,9 +245,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var ScoresService_1;
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
@@ -256,7 +253,7 @@ const common_1 = __webpack_require__(1);
 const mongoose_1 = __webpack_require__(6);
 const mongoose_2 = __webpack_require__(11);
 const score_entity_1 = __webpack_require__(8);
-const score_response_dto_1 = __importDefault(__webpack_require__(12));
+const score_response_dto_1 = __webpack_require__(12);
 const utils_1 = __webpack_require__(13);
 const mongoose_connection_1 = __webpack_require__(15);
 let ScoresService = ScoresService_1 = class ScoresService {
@@ -271,7 +268,7 @@ let ScoresService = ScoresService_1 = class ScoresService {
                 query = query.where('playerName').regex(new RegExp(playerName, 'i'));
             }
             const scores = await query.sort('-score').exec();
-            return scores.map(score_response_dto_1.default.from);
+            return scores.map(score_response_dto_1.ScoreResponseDTO.from);
         }
         catch (error) {
             throw new common_1.HttpException('Erro ao buscar as pontuações', common_1.HttpStatus.BAD_REQUEST);
@@ -297,7 +294,7 @@ let ScoresService = ScoresService_1 = class ScoresService {
             newScore.endTime = new Date(requestDto.endTime);
             newScore.difficulty = requestDto.difficulty;
             const score = await newScore.save();
-            return score_response_dto_1.default.from(score);
+            return score_response_dto_1.ScoreResponseDTO.from(score);
         }
         catch (error) {
             throw new common_1.HttpException('Erro ao gravar a pontuação', common_1.HttpStatus.BAD_REQUEST);
@@ -324,6 +321,7 @@ module.exports = require("mongoose");
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ScoreResponseDTO = void 0;
 class ScoreResponseDTO {
     constructor(id, playerName, score, creationDate, difficulty) {
         this.id = id;
@@ -333,8 +331,8 @@ class ScoreResponseDTO {
         this.difficulty = difficulty;
     }
 }
+exports.ScoreResponseDTO = ScoreResponseDTO;
 ScoreResponseDTO.from = ({ _id, playerName, score, endTime, difficulty, }) => new ScoreResponseDTO(_id.toHexString(), playerName, score, endTime, difficulty);
-exports["default"] = ScoreResponseDTO;
 
 
 /***/ }),
@@ -413,45 +411,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ScoreAddRequestDTO = void 0;
 const class_validator_1 = __webpack_require__(17);
 const validation_messages_constants_1 = __webpack_require__(18);
 class ScoreAddRequestDTO {
-    constructor(playerName, score, startTime, endTime, difficulty, _h, _n) {
-        this.playerName = playerName;
-        this.score = score;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.difficulty = difficulty;
-        this._h = _h;
-        this._n = _n;
-    }
 }
-exports["default"] = ScoreAddRequestDTO;
+exports.ScoreAddRequestDTO = ScoreAddRequestDTO;
 __decorate([
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     __metadata("design:type", String)
 ], ScoreAddRequestDTO.prototype, "playerName", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     (0, class_validator_1.IsInt)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_NUMBER }),
+    (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     __metadata("design:type", Number)
 ], ScoreAddRequestDTO.prototype, "score", void 0);
 __decorate([
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     (0, class_validator_1.IsDateString)({}, { message: validation_messages_constants_1.ValidationMessages.IS_NOT_DATE }),
     __metadata("design:type", String)
 ], ScoreAddRequestDTO.prototype, "startTime", void 0);
 __decorate([
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     (0, class_validator_1.IsDateString)({}, { message: validation_messages_constants_1.ValidationMessages.IS_NOT_DATE }),
     __metadata("design:type", String)
 ], ScoreAddRequestDTO.prototype, "endTime", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     (0, class_validator_1.IsInt)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_NUMBER }),
+    (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     __metadata("design:type", Number)
 ], ScoreAddRequestDTO.prototype, "difficulty", void 0);
 __decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], ScoreAddRequestDTO.prototype, "_n", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: validation_messages_constants_1.ValidationMessages.IS_NOT_EMPTY }),
     __metadata("design:type", String)
 ], ScoreAddRequestDTO.prototype, "_h", void 0);
@@ -517,7 +516,7 @@ const app_module_1 = __webpack_require__(3);
 const bootstrap = async () => {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
-    app.useGlobalPipes(new common_1.ValidationPipe());
+    app.useGlobalPipes(new common_1.ValidationPipe({ transform: true }));
     app.use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,PUT,POST,DELETE');

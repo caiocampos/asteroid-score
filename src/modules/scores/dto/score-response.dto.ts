@@ -1,6 +1,6 @@
 import { ScoreDocument } from '../score.entity';
 
-export default class ScoreResponseDTO {
+export class ScoreResponseDTO {
   constructor(
     public id: string,
     public playerName: string,

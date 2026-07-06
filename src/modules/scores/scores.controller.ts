@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Body, Query, HttpCode } from '@nestjs/common';
 import { ScoresService } from './scores.service';
-import ScoreResponseDTO from './dto/score-response.dto';
-import ScoreAddRequestDTO from './dto/score-add-request.dto';
+import { ScoreResponseDTO } from './dto/score-response.dto';
+import { ScoreAddRequestDTO } from './dto/score-add-request.dto';
 
 @Controller('score')
 export class ScoresController {

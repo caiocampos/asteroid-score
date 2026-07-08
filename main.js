@@ -268,7 +268,9 @@ let ScoresService = ScoresService_1 = class ScoresService {
             return scores.map(score_response_dto_1.ScoreResponseDTO.from);
         }
         catch (error) {
-            throw new common_1.HttpException('Erro ao buscar as pontuações', common_1.HttpStatus.BAD_REQUEST);
+            const msg = 'Erro ao buscar as pontuações';
+            this.logger.error(msg, error);
+            throw new common_1.BadRequestException(msg);
         }
     }
     async count() {
@@ -276,12 +278,16 @@ let ScoresService = ScoresService_1 = class ScoresService {
             return await this.scoreModel.countDocuments().exec();
         }
         catch (error) {
-            throw new common_1.HttpException('Erro ao contar as pontuações', common_1.HttpStatus.BAD_REQUEST);
+            const msg = 'Erro ao contar as pontuações';
+            this.logger.error(msg, error);
+            throw new common_1.BadRequestException(msg);
         }
     }
     async add(requestDto) {
         if (!(0, utils_1.testHash)(requestDto)) {
-            throw new common_1.HttpException('O hash não é válido', common_1.HttpStatus.BAD_REQUEST);
+            const msg = 'O hash não é válido';
+            this.logger.error(msg);
+            throw new common_1.BadRequestException('O hash não é válido');
         }
         try {
             const newScore = new this.scoreModel();
@@ -294,7 +300,9 @@ let ScoresService = ScoresService_1 = class ScoresService {
             return score_response_dto_1.ScoreResponseDTO.from(score);
         }
         catch (error) {
-            throw new common_1.HttpException('Erro ao gravar a pontuação', common_1.HttpStatus.BAD_REQUEST);
+            const msg = 'Erro ao gravar a pontuação';
+            this.logger.error(msg, error);
+            throw new common_1.BadRequestException(msg);
         }
     }
 };

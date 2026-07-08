@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Score, ScoreDocument } from './score.entity';
@@ -25,10 +25,9 @@ export class ScoresService {
       const scores = await query.sort('-score').exec();
       return scores.map(ScoreResponseDTO.from);
     } catch (error) {
-      throw new HttpException(
-        'Erro ao buscar as pontuações',
-        HttpStatus.BAD_REQUEST,
-      );
+      const msg = 'Erro ao buscar as pontuações';
+      this.logger.error(msg, error);
+      throw new BadRequestException(msg);
     }
   }
 
@@ -36,16 +35,17 @@ export class ScoresService {
     try {
       return await this.scoreModel.countDocuments().exec();
     } catch (error) {
-      throw new HttpException(
-        'Erro ao contar as pontuações',
-        HttpStatus.BAD_REQUEST,
-      );
+      const msg = 'Erro ao contar as pontuações';
+      this.logger.error(msg, error);
+      throw new BadRequestException(msg);
     }
   }
 
   async add(requestDto: ScoreAddRequestDTO): Promise<ScoreResponseDTO> {
     if (!testHash(requestDto)) {
-      throw new HttpException('O hash não é válido', HttpStatus.BAD_REQUEST);
+      const msg = 'O hash não é válido';
+      this.logger.error(msg);
+      throw new BadRequestException('O hash não é válido');
     }
     try {
       const newScore = new this.scoreModel();
@@ -57,10 +57,9 @@ export class ScoresService {
       const score = await newScore.save();
       return ScoreResponseDTO.from(score);
     } catch (error) {
-      throw new HttpException(
-        'Erro ao gravar a pontuação',
-        HttpStatus.BAD_REQUEST,
-      );
+      const msg = 'Erro ao gravar a pontuação';
+      this.logger.error(msg, error);
+      throw new BadRequestException(msg);
     }
   }
 }
